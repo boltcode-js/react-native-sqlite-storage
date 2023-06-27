@@ -10,8 +10,6 @@
 
 #include "sqlite3_base64.h"
 
-#define BASE_HANDLE_OFFSET 0x100000000LL
-
 #ifdef SQLC_KEEP_ANDROID_LOG
 // ref: http://www.ibm.com/developerworks/opensource/tutorials/os-androidndk/index.html
 #define MYLOG(...) __android_log_print(ANDROID_LOG_VERBOSE, "sqlc", __VA_ARGS__)
@@ -19,23 +17,29 @@
 #define MYLOG(...) ;
 #endif
 
-#define HANDLE_FROM_VP(p) ( BASE_HANDLE_OFFSET + ( (unsigned char *)(p) - (unsigned char *)NULL ) )
-#define HANDLE_TO_VP(h) (void *)( (unsigned char *)NULL + (ptrdiff_t)((h) - BASE_HANDLE_OFFSET) )
+#define HANDLE_FROM_VP(p) (( (unsigned char *)(p) - (unsigned char *)NULL ) )
+#define HANDLE_TO_VP(h) (void *)( (unsigned char *)NULL + (ptrdiff_t)((h)) )
 
 int sqlc_api_version_check(int sqlc_api_version)
 {
   return (sqlc_api_version != SQLC_API_VERSION) ? SQLC_RESULT_ERROR : SQLC_RESULT_OK;
 }
 
-sqlc_handle_t sqlc_api_db_open(int sqlc_api_version, const char *filename, int flags)
+sqlc_handle_ct* sqlc_api_db_open(int sqlc_api_version, const char *filename, int flags)
 {
-  if (sqlc_api_version != SQLC_API_VERSION) return SQLC_RESULT_ERROR;
+  if (sqlc_api_version != SQLC_API_VERSION) {
+    sqlc_handle_ct* resp = malloc(sizeof(sqlc_handle_ct));
+    resp->result = SQLC_RESULT_ERROR;
+    resp->handle = 0;
+    return resp;
+  }
 
   return sqlc_db_open(filename, flags);
 }
 
-sqlc_handle_t sqlc_db_open(const char *filename, int flags)
+sqlc_handle_ct* sqlc_db_open(const char *filename, int flags)
 {
+  sqlc_handle_ct *resp;
   sqlite3 *d1;
   int r1;
   const char * err;
@@ -46,20 +50,27 @@ sqlc_handle_t sqlc_db_open(const char *filename, int flags)
 
   MYLOG("db_open %s result %d ptr %p", filename, r1, d1);
 
-  if (r1 != 0) return -r1;
+  // TODO: GREG, not in the OutSystems version
+  // if (r1 != 0) return -r1;
+  if (r1 == 0) {
+    sqlite3_db_config(d1, SQLITE_DBCONFIG_DEFENSIVE, 1, NULL);
 
-  sqlite3_db_config(d1, SQLITE_DBCONFIG_DEFENSIVE, 1, NULL);
+    // TBD IGNORE result:
+    sqlite3_regexp_init(d1, &err);
+    sqlite3_base64_init(d1);
+    // TODO: GREG Add uuid here ?
+  }
 
-  // TBD IGNORE result:
-  sqlite3_regexp_init(d1, &err);
+  resp = malloc (sizeof (sqlc_handle_ct));
+  resp->result = (r1 == 0) ? 0 : -r1;
+  resp->handle = HANDLE_FROM_VP(d1);
 
-  sqlite3_base64_init(d1);
-
-  return HANDLE_FROM_VP(d1);
+  return resp;
 }
 
-sqlc_handle_t sqlc_db_prepare_st(sqlc_handle_t db, const char *sql)
+sqlc_handle_ct* sqlc_db_prepare_st(sqlc_handle_t db, const char *sql)
 {
+  sqlc_handle_ct *resp;
   sqlite3 *mydb = HANDLE_TO_VP(db);
   sqlite3_stmt *s;
   int rv;
@@ -68,7 +79,11 @@ sqlc_handle_t sqlc_db_prepare_st(sqlc_handle_t db, const char *sql)
 
   rv = sqlite3_prepare_v2(mydb, sql, -1, &s, NULL);
 
-  return (rv == 0) ? HANDLE_FROM_VP(s) : -rv;
+  resp = malloc (sizeof (sqlc_handle_ct));
+  resp->result = (rv == 0) ? 0 : -rv;
+  resp->handle = HANDLE_FROM_VP(s);
+
+  return resp;
 }
 
 /** FUTURE TBD (???) for sqlcipher:

@@ -11,10 +11,12 @@ package io.liteglue;
     /* check state (should be checked by caller): */
     if (dbfilename == null || dbhandle != 0) return SQLCode.MISUSE;
 
-    long handle = SQLiteNative.sqlc_db_open(dbfilename, openflags);
-    if (handle < 0) return (int)(-handle);
+    SQLiteResponse response = SQLiteNative.sqlc_db_open(dbfilename, openflags);
+    if(response.getResult() != SQLCode.OK) {
+      return -response.getResult();
+    }
 
-    dbhandle = handle;
+    dbhandle = response.getHandle();
     return SQLCode.OK; /* 0 */
   }
 
@@ -81,10 +83,12 @@ package io.liteglue;
       /* check state (should be checked by caller): */
       if (sql == null || sthandle != 0) return SQLCode.MISUSE;
 
-      long sh = SQLiteNative.sqlc_db_prepare_st(dbhandle, sql);
-      if (sh < 0) return (int)(-sh);
+      SQLiteResponse response = SQLiteNative.sqlc_db_prepare_st(dbhandle, sql);
+      if(response.getResult() != SQLCode.OK) {
+        return -response.getResult();
+      }
 
-      sthandle = sh;
+      sthandle = response.getHandle();
       return SQLCode.OK; /* 0 */
     }
 

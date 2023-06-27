@@ -57,10 +57,10 @@ public class SQLiteNative {
   public static native long sqlc_db_last_insert_rowid(long db);
 
   /** Interface to C language function: <br> <code> sqlc_handle_t sqlc_db_open(const char *  filename, int flags); </code>    */
-  public static native long sqlc_db_open(String filename, int flags);
+  public static native SQLiteResponse sqlc_db_open(String filename, int flags);
 
   /** Interface to C language function: <br> <code> sqlc_handle_t sqlc_db_prepare_st(sqlc_handle_t db, const char *  sql); </code>    */
-  public static native long sqlc_db_prepare_st(long db, String sql);
+  public static native SQLiteResponse sqlc_db_prepare_st(long db, String sql);
 
   /** Interface to C language function: <br> <code> int sqlc_db_total_changes(sqlc_handle_t db); </code>    */
   public static native int sqlc_db_total_changes(long db);

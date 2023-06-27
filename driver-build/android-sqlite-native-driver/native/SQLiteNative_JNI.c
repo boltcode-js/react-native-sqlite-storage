@@ -8,13 +8,13 @@
 
 /*   Java->C glue code:
  *   Java package: io.liteglue.SQLiteNative
- *    Java method: long sqlc_api_db_open(int sqlc_api_version, java.lang.String filename, int flags)
- *     C function: sqlc_handle_t sqlc_api_db_open(int sqlc_api_version, const char *  filename, int flags);
+ *    Java method: SQLiteResponse sqlc_api_db_open(int sqlc_api_version, java.lang.String filename, int flags)
+ *     C function: sqlc_handle_ct* sqlc_api_db_open(int sqlc_api_version, const char *  filename, int flags);
  */
-JNIEXPORT jlong JNICALL 
+JNIEXPORT jobject JNICALL
 Java_io_liteglue_SQLiteNative_sqlc_1api_1db_1open__ILjava_lang_String_2I(JNIEnv *env, jclass _unused, jint sqlc_api_version, jstring filename, jint flags) {
   const char* _strchars_filename = NULL;
-  sqlc_handle_t _res;
+  sqlc_handle_ct* _res;
   if ( NULL != filename ) {
     _strchars_filename = (*env)->GetStringUTFChars(env, filename, (jboolean*)NULL);
   if ( NULL == _strchars_filename ) {
@@ -27,7 +27,14 @@ Java_io_liteglue_SQLiteNative_sqlc_1api_1db_1open__ILjava_lang_String_2I(JNIEnv 
   if ( NULL != filename ) {
     (*env)->ReleaseStringUTFChars(env, filename, _strchars_filename);
   }
-  return _res;
+
+  jclass class = (*env)->FindClass(env,"io/liteglue/SQLiteResponse");
+  jmethodID constructor = (*env)->GetMethodID(env, class, "<init>", "(IJ)V");
+  jobject instance = (*env)->NewObject(env, class, constructor, _res->result, _res->handle);
+
+  free(_res);
+
+  return instance;
 }
 
 
@@ -36,7 +43,7 @@ Java_io_liteglue_SQLiteNative_sqlc_1api_1db_1open__ILjava_lang_String_2I(JNIEnv 
  *    Java method: int sqlc_api_version_check(int sqlc_api_version)
  *     C function: int sqlc_api_version_check(int sqlc_api_version);
  */
-JNIEXPORT jint JNICALL 
+JNIEXPORT jint JNICALL
 Java_io_liteglue_SQLiteNative_sqlc_1api_1version_1check__I(JNIEnv *env, jclass _unused, jint sqlc_api_version) {
   int _res;
   _res = sqlc_api_version_check((int) sqlc_api_version);
@@ -49,7 +56,7 @@ Java_io_liteglue_SQLiteNative_sqlc_1api_1version_1check__I(JNIEnv *env, jclass _
  *    Java method: int sqlc_db_close(long db)
  *     C function: int sqlc_db_close(sqlc_handle_t db);
  */
-JNIEXPORT jint JNICALL 
+JNIEXPORT jint JNICALL
 Java_io_liteglue_SQLiteNative_sqlc_1db_1close__J(JNIEnv *env, jclass _unused, jlong db) {
   int _res;
   _res = sqlc_db_close((sqlc_handle_t) db);
@@ -62,7 +69,7 @@ Java_io_liteglue_SQLiteNative_sqlc_1db_1close__J(JNIEnv *env, jclass _unused, jl
  *    Java method: int sqlc_db_errcode(long db)
  *     C function: int sqlc_db_errcode(sqlc_handle_t db);
  */
-JNIEXPORT jint JNICALL 
+JNIEXPORT jint JNICALL
 Java_io_liteglue_SQLiteNative_sqlc_1db_1errcode__J(JNIEnv *env, jclass _unused, jlong db) {
   int _res;
   _res = sqlc_db_errcode((sqlc_handle_t) db);
@@ -75,7 +82,7 @@ Java_io_liteglue_SQLiteNative_sqlc_1db_1errcode__J(JNIEnv *env, jclass _unused, 
  *    Java method: java.lang.String sqlc_db_errmsg_native(long db)
  *     C function: const char *  sqlc_db_errmsg_native(sqlc_handle_t db);
  */
-JNIEXPORT jstring JNICALL 
+JNIEXPORT jstring JNICALL
 Java_io_liteglue_SQLiteNative_sqlc_1db_1errmsg_1native__J(JNIEnv *env, jclass _unused, jlong db) {
   const char *  _res;
   _res = sqlc_db_errmsg_native((sqlc_handle_t) db);
@@ -89,7 +96,7 @@ Java_io_liteglue_SQLiteNative_sqlc_1db_1errmsg_1native__J(JNIEnv *env, jclass _u
  *    Java method: int sqlc_db_key_native_string(long db, java.lang.String key_string)
  *     C function: int sqlc_db_key_native_string(sqlc_handle_t db, char *  key_string);
  */
-JNIEXPORT jint JNICALL 
+JNIEXPORT jint JNICALL
 Java_io_liteglue_SQLiteNative_sqlc_1db_1key_1native_1string__JLjava_lang_String_2(JNIEnv *env, jclass _unused, jlong db, jstring key_string) {
   const char* _strchars_key_string = NULL;
   int _res;
@@ -114,7 +121,7 @@ Java_io_liteglue_SQLiteNative_sqlc_1db_1key_1native_1string__JLjava_lang_String_
  *    Java method: long sqlc_db_last_insert_rowid(long db)
  *     C function: sqlc_long_t sqlc_db_last_insert_rowid(sqlc_handle_t db);
  */
-JNIEXPORT jlong JNICALL 
+JNIEXPORT jlong JNICALL
 Java_io_liteglue_SQLiteNative_sqlc_1db_1last_1insert_1rowid__J(JNIEnv *env, jclass _unused, jlong db) {
   sqlc_long_t _res;
   _res = sqlc_db_last_insert_rowid((sqlc_handle_t) db);
@@ -124,13 +131,13 @@ Java_io_liteglue_SQLiteNative_sqlc_1db_1last_1insert_1rowid__J(JNIEnv *env, jcla
 
 /*   Java->C glue code:
  *   Java package: io.liteglue.SQLiteNative
- *    Java method: long sqlc_db_open(java.lang.String filename, int flags)
- *     C function: sqlc_handle_t sqlc_db_open(const char *  filename, int flags);
+ *    Java method: SQLiteResponse sqlc_db_open(java.lang.String filename, int flags)
+ *     C function: sqlc_handle_ct* sqlc_db_open(const char *  filename, int flags);
  */
-JNIEXPORT jlong JNICALL 
+JNIEXPORT jobject JNICALL
 Java_io_liteglue_SQLiteNative_sqlc_1db_1open__Ljava_lang_String_2I(JNIEnv *env, jclass _unused, jstring filename, jint flags) {
   const char* _strchars_filename = NULL;
-  sqlc_handle_t _res;
+  sqlc_handle_ct* _res;
   if ( NULL != filename ) {
     _strchars_filename = (*env)->GetStringUTFChars(env, filename, (jboolean*)NULL);
   if ( NULL == _strchars_filename ) {
@@ -143,19 +150,26 @@ Java_io_liteglue_SQLiteNative_sqlc_1db_1open__Ljava_lang_String_2I(JNIEnv *env, 
   if ( NULL != filename ) {
     (*env)->ReleaseStringUTFChars(env, filename, _strchars_filename);
   }
-  return _res;
+
+  jclass class = (*env)->FindClass(env,"io/liteglue/SQLiteResponse");
+  jmethodID constructor = (*env)->GetMethodID(env, class, "<init>", "(IJ)V");
+  jobject instance = (*env)->NewObject(env, class, constructor, _res->result, _res->handle);
+
+  free(_res);
+
+  return instance;
 }
 
 
 /*   Java->C glue code:
  *   Java package: io.liteglue.SQLiteNative
- *    Java method: long sqlc_db_prepare_st(long db, java.lang.String sql)
- *     C function: sqlc_handle_t sqlc_db_prepare_st(sqlc_handle_t db, const char *  sql);
+ *    Java method: SQLiteResponse sqlc_db_prepare_st(long db, java.lang.String sql)
+ *     C function: sqlc_handle_ct* sqlc_db_prepare_st(sqlc_handle_t db, const char *  sql);
  */
-JNIEXPORT jlong JNICALL 
+JNIEXPORT jlong JNICALL
 Java_io_liteglue_SQLiteNative_sqlc_1db_1prepare_1st__JLjava_lang_String_2(JNIEnv *env, jclass _unused, jlong db, jstring sql) {
   const char* _strchars_sql = NULL;
-  sqlc_handle_t _res;
+  sqlc_handle_ct* _res;
   if ( NULL != sql ) {
     _strchars_sql = (*env)->GetStringUTFChars(env, sql, (jboolean*)NULL);
   if ( NULL == _strchars_sql ) {
@@ -168,7 +182,14 @@ Java_io_liteglue_SQLiteNative_sqlc_1db_1prepare_1st__JLjava_lang_String_2(JNIEnv
   if ( NULL != sql ) {
     (*env)->ReleaseStringUTFChars(env, sql, _strchars_sql);
   }
-  return _res;
+
+  jclass class = (*env)->FindClass(env,"io/liteglue/SQLiteResponse");
+  jmethodID constructor = (*env)->GetMethodID(env, class, "<init>", "(IJ)V");
+  jobject instance = (*env)->NewObject(env, class, constructor, _res->result, _res->handle);
+
+  free(_res);
+
+  return instance;
 }
 
 
@@ -177,7 +198,7 @@ Java_io_liteglue_SQLiteNative_sqlc_1db_1prepare_1st__JLjava_lang_String_2(JNIEnv
  *    Java method: int sqlc_db_total_changes(long db)
  *     C function: int sqlc_db_total_changes(sqlc_handle_t db);
  */
-JNIEXPORT jint JNICALL 
+JNIEXPORT jint JNICALL
 Java_io_liteglue_SQLiteNative_sqlc_1db_1total_1changes__J(JNIEnv *env, jclass _unused, jlong db) {
   int _res;
   _res = sqlc_db_total_changes((sqlc_handle_t) db);
@@ -190,7 +211,7 @@ Java_io_liteglue_SQLiteNative_sqlc_1db_1total_1changes__J(JNIEnv *env, jclass _u
  *    Java method: java.lang.String sqlc_errstr_native(int errcode)
  *     C function: const char *  sqlc_errstr_native(int errcode);
  */
-JNIEXPORT jstring JNICALL 
+JNIEXPORT jstring JNICALL
 Java_io_liteglue_SQLiteNative_sqlc_1errstr_1native__I(JNIEnv *env, jclass _unused, jint errcode) {
   const char *  _res;
   _res = sqlc_errstr_native((int) errcode);
@@ -204,7 +225,7 @@ Java_io_liteglue_SQLiteNative_sqlc_1errstr_1native__I(JNIEnv *env, jclass _unuse
  *    Java method: int sqlc_st_bind_double(long st, int pos, double val)
  *     C function: int sqlc_st_bind_double(sqlc_handle_t st, int pos, double val);
  */
-JNIEXPORT jint JNICALL 
+JNIEXPORT jint JNICALL
 Java_io_liteglue_SQLiteNative_sqlc_1st_1bind_1double__JID(JNIEnv *env, jclass _unused, jlong st, jint pos, jdouble val) {
   int _res;
   _res = sqlc_st_bind_double((sqlc_handle_t) st, (int) pos, (double) val);
@@ -217,7 +238,7 @@ Java_io_liteglue_SQLiteNative_sqlc_1st_1bind_1double__JID(JNIEnv *env, jclass _u
  *    Java method: int sqlc_st_bind_int(long st, int pos, int val)
  *     C function: int sqlc_st_bind_int(sqlc_handle_t st, int pos, int val);
  */
-JNIEXPORT jint JNICALL 
+JNIEXPORT jint JNICALL
 Java_io_liteglue_SQLiteNative_sqlc_1st_1bind_1int__JII(JNIEnv *env, jclass _unused, jlong st, jint pos, jint val) {
   int _res;
   _res = sqlc_st_bind_int((sqlc_handle_t) st, (int) pos, (int) val);
@@ -230,7 +251,7 @@ Java_io_liteglue_SQLiteNative_sqlc_1st_1bind_1int__JII(JNIEnv *env, jclass _unus
  *    Java method: int sqlc_st_bind_long(long st, int pos, long val)
  *     C function: int sqlc_st_bind_long(sqlc_handle_t st, int pos, sqlc_long_t val);
  */
-JNIEXPORT jint JNICALL 
+JNIEXPORT jint JNICALL
 Java_io_liteglue_SQLiteNative_sqlc_1st_1bind_1long__JIJ(JNIEnv *env, jclass _unused, jlong st, jint pos, jlong val) {
   int _res;
   _res = sqlc_st_bind_long((sqlc_handle_t) st, (int) pos, (sqlc_long_t) val);
@@ -243,7 +264,7 @@ Java_io_liteglue_SQLiteNative_sqlc_1st_1bind_1long__JIJ(JNIEnv *env, jclass _unu
  *    Java method: int sqlc_st_bind_null(long st, int pos)
  *     C function: int sqlc_st_bind_null(sqlc_handle_t st, int pos);
  */
-JNIEXPORT jint JNICALL 
+JNIEXPORT jint JNICALL
 Java_io_liteglue_SQLiteNative_sqlc_1st_1bind_1null__JI(JNIEnv *env, jclass _unused, jlong st, jint pos) {
   int _res;
   _res = sqlc_st_bind_null((sqlc_handle_t) st, (int) pos);
@@ -256,7 +277,7 @@ Java_io_liteglue_SQLiteNative_sqlc_1st_1bind_1null__JI(JNIEnv *env, jclass _unus
  *    Java method: int sqlc_st_bind_text_native(long st, int col, java.lang.String val)
  *     C function: int sqlc_st_bind_text_native(sqlc_handle_t st, int col, const char *  val);
  */
-JNIEXPORT jint JNICALL 
+JNIEXPORT jint JNICALL
 Java_io_liteglue_SQLiteNative_sqlc_1st_1bind_1text_1native__JILjava_lang_String_2(JNIEnv *env, jclass _unused, jlong st, jint col, jstring val) {
   const char* _strchars_val = NULL;
   int _res;
@@ -281,7 +302,7 @@ Java_io_liteglue_SQLiteNative_sqlc_1st_1bind_1text_1native__JILjava_lang_String_
  *    Java method: int sqlc_st_column_count(long st)
  *     C function: int sqlc_st_column_count(sqlc_handle_t st);
  */
-JNIEXPORT jint JNICALL 
+JNIEXPORT jint JNICALL
 Java_io_liteglue_SQLiteNative_sqlc_1st_1column_1count__J(JNIEnv *env, jclass _unused, jlong st) {
   int _res;
   _res = sqlc_st_column_count((sqlc_handle_t) st);
@@ -294,7 +315,7 @@ Java_io_liteglue_SQLiteNative_sqlc_1st_1column_1count__J(JNIEnv *env, jclass _un
  *    Java method: double sqlc_st_column_double(long st, int col)
  *     C function: double sqlc_st_column_double(sqlc_handle_t st, int col);
  */
-JNIEXPORT jdouble JNICALL 
+JNIEXPORT jdouble JNICALL
 Java_io_liteglue_SQLiteNative_sqlc_1st_1column_1double__JI(JNIEnv *env, jclass _unused, jlong st, jint col) {
   double _res;
   _res = sqlc_st_column_double((sqlc_handle_t) st, (int) col);
@@ -307,7 +328,7 @@ Java_io_liteglue_SQLiteNative_sqlc_1st_1column_1double__JI(JNIEnv *env, jclass _
  *    Java method: int sqlc_st_column_int(long st, int col)
  *     C function: int sqlc_st_column_int(sqlc_handle_t st, int col);
  */
-JNIEXPORT jint JNICALL 
+JNIEXPORT jint JNICALL
 Java_io_liteglue_SQLiteNative_sqlc_1st_1column_1int__JI(JNIEnv *env, jclass _unused, jlong st, jint col) {
   int _res;
   _res = sqlc_st_column_int((sqlc_handle_t) st, (int) col);
@@ -320,7 +341,7 @@ Java_io_liteglue_SQLiteNative_sqlc_1st_1column_1int__JI(JNIEnv *env, jclass _unu
  *    Java method: long sqlc_st_column_long(long st, int col)
  *     C function: sqlc_long_t sqlc_st_column_long(sqlc_handle_t st, int col);
  */
-JNIEXPORT jlong JNICALL 
+JNIEXPORT jlong JNICALL
 Java_io_liteglue_SQLiteNative_sqlc_1st_1column_1long__JI(JNIEnv *env, jclass _unused, jlong st, jint col) {
   sqlc_long_t _res;
   _res = sqlc_st_column_long((sqlc_handle_t) st, (int) col);
@@ -333,7 +354,7 @@ Java_io_liteglue_SQLiteNative_sqlc_1st_1column_1long__JI(JNIEnv *env, jclass _un
  *    Java method: java.lang.String sqlc_st_column_name(long st, int col)
  *     C function: const char *  sqlc_st_column_name(sqlc_handle_t st, int col);
  */
-JNIEXPORT jstring JNICALL 
+JNIEXPORT jstring JNICALL
 Java_io_liteglue_SQLiteNative_sqlc_1st_1column_1name__JI(JNIEnv *env, jclass _unused, jlong st, jint col) {
   const char *  _res;
   _res = sqlc_st_column_name((sqlc_handle_t) st, (int) col);
@@ -347,7 +368,7 @@ Java_io_liteglue_SQLiteNative_sqlc_1st_1column_1name__JI(JNIEnv *env, jclass _un
  *    Java method: java.lang.String sqlc_st_column_text_native(long st, int col)
  *     C function: const char *  sqlc_st_column_text_native(sqlc_handle_t st, int col);
  */
-JNIEXPORT jstring JNICALL 
+JNIEXPORT jstring JNICALL
 Java_io_liteglue_SQLiteNative_sqlc_1st_1column_1text_1native__JI(JNIEnv *env, jclass _unused, jlong st, jint col) {
   const char *  _res;
   _res = sqlc_st_column_text_native((sqlc_handle_t) st, (int) col);
@@ -361,7 +382,7 @@ Java_io_liteglue_SQLiteNative_sqlc_1st_1column_1text_1native__JI(JNIEnv *env, jc
  *    Java method: int sqlc_st_column_type(long st, int col)
  *     C function: int sqlc_st_column_type(sqlc_handle_t st, int col);
  */
-JNIEXPORT jint JNICALL 
+JNIEXPORT jint JNICALL
 Java_io_liteglue_SQLiteNative_sqlc_1st_1column_1type__JI(JNIEnv *env, jclass _unused, jlong st, jint col) {
   int _res;
   _res = sqlc_st_column_type((sqlc_handle_t) st, (int) col);
@@ -374,7 +395,7 @@ Java_io_liteglue_SQLiteNative_sqlc_1st_1column_1type__JI(JNIEnv *env, jclass _un
  *    Java method: int sqlc_st_finish(long st)
  *     C function: int sqlc_st_finish(sqlc_handle_t st);
  */
-JNIEXPORT jint JNICALL 
+JNIEXPORT jint JNICALL
 Java_io_liteglue_SQLiteNative_sqlc_1st_1finish__J(JNIEnv *env, jclass _unused, jlong st) {
   int _res;
   _res = sqlc_st_finish((sqlc_handle_t) st);
@@ -387,7 +408,7 @@ Java_io_liteglue_SQLiteNative_sqlc_1st_1finish__J(JNIEnv *env, jclass _unused, j
  *    Java method: int sqlc_st_step(long st)
  *     C function: int sqlc_st_step(sqlc_handle_t st);
  */
-JNIEXPORT jint JNICALL 
+JNIEXPORT jint JNICALL
 Java_io_liteglue_SQLiteNative_sqlc_1st_1step__J(JNIEnv *env, jclass _unused, jlong st) {
   int _res;
   _res = sqlc_st_step((sqlc_handle_t) st);

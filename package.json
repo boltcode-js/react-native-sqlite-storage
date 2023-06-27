@@ -1,11 +1,8 @@
 {
-  "name": "@greg-local/react-native-sqlite-storage",
-  "version": "6.1.2",
+  "name": "@boltcode/react-native-sqlite-storage",
+  "version": "6.1.0",
   "description": "SQLite3 bindings for React Native (Android & iOS)",
   "main": "sqlite.js",
-  "publishConfig": {
-    "registry": "http://localhost:4873"
-  },
   "scripts": {
     "test": "echo \"Error: no test specified yet\" && exit 1"
   },
@@ -26,12 +23,12 @@
     "promise",
     "cordova-sqlite-storage"
   ],
-  "author": "Andrzej Porebski",
+  "authors": ["Andrzej Porebski", "La Gregance"],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/andpor/react-native-sqlite-storage/issues"
+    "url": "https://github.com/boltcode-js/react-native-sqlite-storage/issues"
   },
-  "homepage": "https://github.com/andpor/react-native-sqlite-storage",
+  "homepage": "https://github.com/boltcode-js/react-native-sqlite-storage",
   "peerDependencies": {
     "react-native": ">=0.14.0"
   },

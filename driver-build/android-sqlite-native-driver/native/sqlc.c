@@ -10,6 +10,8 @@
 
 #include "sqlite3_base64.h"
 
+#include "uuid.c"
+
 #ifdef SQLC_KEEP_ANDROID_LOG
 // ref: http://www.ibm.com/developerworks/opensource/tutorials/os-androidndk/index.html
 #define MYLOG(...) __android_log_print(ANDROID_LOG_VERBOSE, "sqlc", __VA_ARGS__)
@@ -58,7 +60,7 @@ sqlc_handle_ct* sqlc_db_open(const char *filename, int flags)
     // TBD IGNORE result:
     sqlite3_regexp_init(d1, &err);
     sqlite3_base64_init(d1);
-    // TODO: GREG Add uuid here ?
+    sqlite3_uuid_init(d1, 0, 0);
   }
 
   resp = malloc (sizeof (sqlc_handle_ct));

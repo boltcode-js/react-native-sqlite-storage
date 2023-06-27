@@ -1,0 +1,7 @@
+.*.swp
+*.swp
+*.java.old
+*.jar
+Android-SQLiteConnectorTest/bin
+Android-SQLiteConnectorTest/gen
+build

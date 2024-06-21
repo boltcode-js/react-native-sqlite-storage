@@ -82,4 +82,5 @@ gradle-app.setting
 !gradle-wrapper.jar
 
 instructions/
-driver-build/
+platforms/android/android-sqlite-connector
+platforms/android/android-sqlite-native-driver

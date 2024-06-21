@@ -1,0 +1,15 @@
+[submodule "sqlite/sqlite-amalgamation"]
+	path = sqlite/sqlite-amalgamation
+	url = https://github.com/liteglue/sqlite-amalgamation.git
+[submodule "sqlite/sqlite3-base64"]
+	path = sqlite/sqlite3-base64
+	url = https://github.com/brodybits/sqlite3-base64.git
+[submodule "sqlite/sqlite3-regexp-cached"]
+	path = sqlite/sqlite3-regexp-cached
+	url = https://github.com/brodybits/sqlite3-regexp-cached.git
+[submodule "sqlite/libb64-core"]
+	path = sqlite/libb64-core
+	url = https://github.com/brodybits/libb64-core.git
+[submodule "sqlite/gluegentools"]
+	path = sqlite/gluegentools
+	url = https://github.com/sqlg/gluegentools.git

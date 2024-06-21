@@ -5,7 +5,9 @@ module.exports = {
 				project: './platforms/ios/SQLite.xcodeproj'
 			},
 			android: {
-				sourceDir: './platforms/android'
+				sourceDir: './platforms/android',
+				packageImportPath: "import io.liteglue.SQLitePluginPackage;",
+          		packageInstance: "new SQLitePluginPackage()",
 			},
 			windows: {
 				sourceDir: './platforms/windows',

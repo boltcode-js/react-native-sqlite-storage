@@ -32,40 +32,14 @@
  * See http://opensource.org/licenses/alphabetical for full text.
  */
 
-#import "sqlite3.h"
-
 #include <regex.h>
-
-#include "uuid.c"
-
-static void sqlite_regexp(sqlite3_context* context, int argc, sqlite3_value** values) {
-  if ( argc < 2 ) {
-    sqlite3_result_error(context, "SQL function regexp() called with missing arguments.", -1);
-    return;
-  }
-
-  char* reg  = (char*) sqlite3_value_text(values[0]);
-  char* text = (char*) sqlite3_value_text(values[1]);
-
-  if ( argc != 2 || reg == 0 || text == 0) {
-    sqlite3_result_error(context, "SQL function regexp() called with invalid arguments.", -1);
-    return;
-  }
-
-  int ret;
-  regex_t regex;
-
-  ret = regcomp(&regex, reg, REG_EXTENDED | REG_NOSUB);
-  if ( ret != 0 ) {
-    sqlite3_result_error(context, "error compiling regular expression", -1);
-    return;
-  }
-
-  ret = regexec(&regex, text , 0, NULL, 0);
-  regfree(&regex);
-
-  sqlite3_result_int(context, (ret != REG_NOMATCH));
-}
+#include "../../sqlite/sqlite-amalgamation/sqlite3.h"
+#include "../../sqlite/sqlite-amalgamation/sqlite3.c"
+#include "../../sqlite/libb64-core/cencode.c"
+#include "../../sqlite/libb64-core/cdecode.c"
+#include "../../sqlite/sqlite3-base64/sqlite3_base64.c"
+#include "../../sqlite/sqlite3-regexp-cached/sqlite3_regexp.c"
+#include "../../sqlite/sqlite3-uuid/uuid.c"
 
 
 @implementation SQLite
@@ -163,6 +137,7 @@ RCT_EXPORT_METHOD(open: (NSDictionary *) options success:(RCTResponseSenderBlock
   SQLiteResult* pluginResult = nil;
   NSString *dbname;
   int sqlOpenFlags = SQLITE_OPEN_READWRITE | SQLITE_OPEN_CREATE;
+  const char *err;
 
   @synchronized (self) {
     NSString *dbfilename = options[@"name"];
@@ -225,8 +200,10 @@ RCT_EXPORT_METHOD(open: (NSDictionary *) options success:(RCTResponseSenderBlock
           pluginResult = [SQLiteResult resultWithStatus:SQLiteStatus_ERROR messageAsString:@"Unable to open DB"];
           return;
         } else {
-          sqlite3_create_function(db, "regexp", 2, SQLITE_ANY, NULL, &sqlite_regexp, NULL, NULL);
+          sqlite3_regexp_init(db, &err);
+          sqlite3_base64_init(db);
           sqlite3_uuid_init(db, 0, 0);
+
           const char *key = NULL;
 
 #ifdef SQLCIPHER

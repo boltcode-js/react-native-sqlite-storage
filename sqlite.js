@@ -81,5 +81,6 @@ function createPromiseRuntime() {
   plugin.log("Promise based runtime ready");
 }
 SQLiteFactory.prototype.enablePromise = enablePromiseRuntime;
+enablePromiseRuntime(true);
 
 module.exports = new SQLiteFactory();

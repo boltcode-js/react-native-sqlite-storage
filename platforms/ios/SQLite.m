@@ -39,7 +39,7 @@
 #include "../../sqlite/libb64-core/cdecode.c"
 #include "../../sqlite/sqlite3-base64/sqlite3_base64.c"
 #include "../../sqlite/sqlite3-regexp-cached/sqlite3_regexp.c"
-#include "../../sqlite/sqlie3-uuid/uuid.c"
+#include "../../sqlite/sqlite3-uuid/uuid.c"
 
 
 @implementation SQLite
@@ -200,7 +200,7 @@ RCT_EXPORT_METHOD(open: (NSDictionary *) options success:(RCTResponseSenderBlock
           pluginResult = [SQLiteResult resultWithStatus:SQLiteStatus_ERROR messageAsString:@"Unable to open DB"];
           return;
         } else {
-          sqlite3_regexp_init(dn, &err);
+          sqlite3_regexp_init(db, &err);
           sqlite3_base64_init(db);
           sqlite3_uuid_init(db, 0, 0);
 

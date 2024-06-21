@@ -1,4 +1,6 @@
 #!/bin/zsh
+set -e
+
 cd $(dirname "$0")
 
 rm -rf ../platforms/android-native/libs

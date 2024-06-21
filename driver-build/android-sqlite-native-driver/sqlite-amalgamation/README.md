@@ -1,6 +1,6 @@
 # SQLite amalgamation
 
-SQLite version: 3.30.1
+SQLite version: 3.43.1
 
 ## License
 

@@ -10,6 +10,23 @@
 		C7DCD6E41BE0295900F3300E /* SQLite.h in Headers */ = {isa = PBXBuildFile; fileRef = C7DCD6E21BE0295900F3300E /* SQLite.h */; };
 		C7DCD6E51BE0295A00F3300E /* SQLite.m in Sources */ = {isa = PBXBuildFile; fileRef = C7DCD6E31BE0295900F3300E /* SQLite.m */; };
 		C7DCD7141BE2D5DE00F3300E /* SQLiteResult.m in Sources */ = {isa = PBXBuildFile; fileRef = C7DCD7131BE2D5DE00F3300E /* SQLiteResult.m */; };
+		E0369DD62C25BB23004F1B6B /* antlr.jar in Frameworks */ = {isa = PBXBuildFile; fileRef = E0369DB22C25BB23004F1B6B /* antlr.jar */; };
+		E0369DD72C25BB23004F1B6B /* gluegen.jar in Frameworks */ = {isa = PBXBuildFile; fileRef = E0369DB32C25BB23004F1B6B /* gluegen.jar */; };
+		E0369DD82C25BB23004F1B6B /* cdecode.c in Sources */ = {isa = PBXBuildFile; fileRef = E0369DB62C25BB23004F1B6B /* cdecode.c */; };
+		E0369DD92C25BB23004F1B6B /* cdecode.h in Headers */ = {isa = PBXBuildFile; fileRef = E0369DB72C25BB23004F1B6B /* cdecode.h */; };
+		E0369DDA2C25BB23004F1B6B /* cencode.c in Sources */ = {isa = PBXBuildFile; fileRef = E0369DB82C25BB23004F1B6B /* cencode.c */; };
+		E0369DDB2C25BB23004F1B6B /* cencode.h in Headers */ = {isa = PBXBuildFile; fileRef = E0369DB92C25BB23004F1B6B /* cencode.h */; };
+		E0369DDC2C25BB23004F1B6B /* sqlite3.c in Sources */ = {isa = PBXBuildFile; fileRef = E0369DBF2C25BB23004F1B6B /* sqlite3.c */; };
+		E0369DDD2C25BB23004F1B6B /* sqlite3.h in Headers */ = {isa = PBXBuildFile; fileRef = E0369DC02C25BB23004F1B6B /* sqlite3.h */; };
+		E0369DDE2C25BB23004F1B6B /* sqlite3ext.h in Headers */ = {isa = PBXBuildFile; fileRef = E0369DC12C25BB23004F1B6B /* sqlite3ext.h */; };
+		E0369DDF2C25BB23004F1B6B /* Makefile in Sources */ = {isa = PBXBuildFile; fileRef = E0369DC42C25BB23004F1B6B /* Makefile */; };
+		E0369DE02C25BB23004F1B6B /* sqlite3_base64.c in Sources */ = {isa = PBXBuildFile; fileRef = E0369DC62C25BB23004F1B6B /* sqlite3_base64.c */; };
+		E0369DE12C25BB23004F1B6B /* sqlite3_base64.h in Headers */ = {isa = PBXBuildFile; fileRef = E0369DC72C25BB23004F1B6B /* sqlite3_base64.h */; };
+		E0369DE22C25BB23004F1B6B /* test-base64-encode.c in Sources */ = {isa = PBXBuildFile; fileRef = E0369DC92C25BB23004F1B6B /* test-base64-encode.c */; };
+		E0369DE32C25BB23004F1B6B /* test-blobfrombase64.c in Sources */ = {isa = PBXBuildFile; fileRef = E0369DCA2C25BB23004F1B6B /* test-blobfrombase64.c */; };
+		E0369DE42C25BB23004F1B6B /* sqlite3_regexp.c in Sources */ = {isa = PBXBuildFile; fileRef = E0369DCF2C25BB23004F1B6B /* sqlite3_regexp.c */; };
+		E0369DE52C25BB23004F1B6B /* sqlite3_regexp.h in Headers */ = {isa = PBXBuildFile; fileRef = E0369DD02C25BB23004F1B6B /* sqlite3_regexp.h */; };
+		E0369DE62C25BB23004F1B6B /* uuid.c in Sources */ = {isa = PBXBuildFile; fileRef = E0369DD32C25BB23004F1B6B /* uuid.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -29,6 +46,35 @@
 		C7DCD6E31BE0295900F3300E /* SQLite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQLite.m; sourceTree = "<group>"; };
 		C7DCD7131BE2D5DE00F3300E /* SQLiteResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQLiteResult.m; sourceTree = "<group>"; };
 		C7DCD7151BE2D61E00F3300E /* SQLiteResult.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQLiteResult.h; sourceTree = "<group>"; };
+		E0369DB22C25BB23004F1B6B /* antlr.jar */ = {isa = PBXFileReference; lastKnownFileType = archive.jar; path = antlr.jar; sourceTree = "<group>"; };
+		E0369DB32C25BB23004F1B6B /* gluegen.jar */ = {isa = PBXFileReference; lastKnownFileType = archive.jar; path = gluegen.jar; sourceTree = "<group>"; };
+		E0369DB42C25BB23004F1B6B /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		E0369DB62C25BB23004F1B6B /* cdecode.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = cdecode.c; sourceTree = "<group>"; };
+		E0369DB72C25BB23004F1B6B /* cdecode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cdecode.h; sourceTree = "<group>"; };
+		E0369DB82C25BB23004F1B6B /* cencode.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = cencode.c; sourceTree = "<group>"; };
+		E0369DB92C25BB23004F1B6B /* cencode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cencode.h; sourceTree = "<group>"; };
+		E0369DBA2C25BB23004F1B6B /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		E0369DBB2C25BB23004F1B6B /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		E0369DBD2C25BB23004F1B6B /* LICENSE.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = LICENSE.md; sourceTree = "<group>"; };
+		E0369DBE2C25BB23004F1B6B /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		E0369DBF2C25BB23004F1B6B /* sqlite3.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sqlite3.c; sourceTree = "<group>"; };
+		E0369DC02C25BB23004F1B6B /* sqlite3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sqlite3.h; sourceTree = "<group>"; };
+		E0369DC12C25BB23004F1B6B /* sqlite3ext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sqlite3ext.h; sourceTree = "<group>"; };
+		E0369DC32C25BB23004F1B6B /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		E0369DC42C25BB23004F1B6B /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
+		E0369DC52C25BB23004F1B6B /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		E0369DC62C25BB23004F1B6B /* sqlite3_base64.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sqlite3_base64.c; sourceTree = "<group>"; };
+		E0369DC72C25BB23004F1B6B /* sqlite3_base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sqlite3_base64.h; sourceTree = "<group>"; };
+		E0369DC82C25BB23004F1B6B /* test-all.mk */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "test-all.mk"; sourceTree = "<group>"; };
+		E0369DC92C25BB23004F1B6B /* test-base64-encode.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "test-base64-encode.c"; sourceTree = "<group>"; };
+		E0369DCA2C25BB23004F1B6B /* test-blobfrombase64.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "test-blobfrombase64.c"; sourceTree = "<group>"; };
+		E0369DCB2C25BB23004F1B6B /* test-dependencies.mk */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "test-dependencies.mk"; sourceTree = "<group>"; };
+		E0369DCD2C25BB23004F1B6B /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		E0369DCE2C25BB23004F1B6B /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		E0369DCF2C25BB23004F1B6B /* sqlite3_regexp.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sqlite3_regexp.c; sourceTree = "<group>"; };
+		E0369DD02C25BB23004F1B6B /* sqlite3_regexp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sqlite3_regexp.h; sourceTree = "<group>"; };
+		E0369DD22C25BB23004F1B6B /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		E0369DD32C25BB23004F1B6B /* uuid.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = uuid.c; sourceTree = "<group>"; };
 		E23D7B471ACEFE2A00C59171 /* libSQLite.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSQLite.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -37,6 +83,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E0369DD62C25BB23004F1B6B /* antlr.jar in Frameworks */,
+				E0369DD72C25BB23004F1B6B /* gluegen.jar in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -46,12 +94,98 @@
 		C7DCD6E11BE0293D00F3300E /* SQLite */ = {
 			isa = PBXGroup;
 			children = (
+				E0369DD52C25BB23004F1B6B /* sqlite */,
 				C7DCD6E21BE0295900F3300E /* SQLite.h */,
 				C7DCD6E31BE0295900F3300E /* SQLite.m */,
 				C7DCD7151BE2D61E00F3300E /* SQLiteResult.h */,
 				C7DCD7131BE2D5DE00F3300E /* SQLiteResult.m */,
 			);
 			name = SQLite;
+			sourceTree = "<group>";
+		};
+		E0369DB52C25BB23004F1B6B /* gluegentools */ = {
+			isa = PBXGroup;
+			children = (
+				E0369DB22C25BB23004F1B6B /* antlr.jar */,
+				E0369DB32C25BB23004F1B6B /* gluegen.jar */,
+				E0369DB42C25BB23004F1B6B /* README.md */,
+			);
+			path = gluegentools;
+			sourceTree = "<group>";
+		};
+		E0369DBC2C25BB23004F1B6B /* libb64-core */ = {
+			isa = PBXGroup;
+			children = (
+				E0369DB62C25BB23004F1B6B /* cdecode.c */,
+				E0369DB72C25BB23004F1B6B /* cdecode.h */,
+				E0369DB82C25BB23004F1B6B /* cencode.c */,
+				E0369DB92C25BB23004F1B6B /* cencode.h */,
+				E0369DBA2C25BB23004F1B6B /* LICENSE */,
+				E0369DBB2C25BB23004F1B6B /* README.md */,
+			);
+			path = "libb64-core";
+			sourceTree = "<group>";
+		};
+		E0369DC22C25BB23004F1B6B /* sqlite-amalgamation */ = {
+			isa = PBXGroup;
+			children = (
+				E0369DBD2C25BB23004F1B6B /* LICENSE.md */,
+				E0369DBE2C25BB23004F1B6B /* README.md */,
+				E0369DBF2C25BB23004F1B6B /* sqlite3.c */,
+				E0369DC02C25BB23004F1B6B /* sqlite3.h */,
+				E0369DC12C25BB23004F1B6B /* sqlite3ext.h */,
+			);
+			path = "sqlite-amalgamation";
+			sourceTree = "<group>";
+		};
+		E0369DCC2C25BB23004F1B6B /* sqlite3-base64 */ = {
+			isa = PBXGroup;
+			children = (
+				E0369DC32C25BB23004F1B6B /* .gitignore */,
+				E0369DC42C25BB23004F1B6B /* Makefile */,
+				E0369DC52C25BB23004F1B6B /* README.md */,
+				E0369DC62C25BB23004F1B6B /* sqlite3_base64.c */,
+				E0369DC72C25BB23004F1B6B /* sqlite3_base64.h */,
+				E0369DC82C25BB23004F1B6B /* test-all.mk */,
+				E0369DC92C25BB23004F1B6B /* test-base64-encode.c */,
+				E0369DCA2C25BB23004F1B6B /* test-blobfrombase64.c */,
+				E0369DCB2C25BB23004F1B6B /* test-dependencies.mk */,
+			);
+			path = "sqlite3-base64";
+			sourceTree = "<group>";
+		};
+		E0369DD12C25BB23004F1B6B /* sqlite3-regexp-cached */ = {
+			isa = PBXGroup;
+			children = (
+				E0369DCD2C25BB23004F1B6B /* LICENSE */,
+				E0369DCE2C25BB23004F1B6B /* README.md */,
+				E0369DCF2C25BB23004F1B6B /* sqlite3_regexp.c */,
+				E0369DD02C25BB23004F1B6B /* sqlite3_regexp.h */,
+			);
+			path = "sqlite3-regexp-cached";
+			sourceTree = "<group>";
+		};
+		E0369DD42C25BB23004F1B6B /* sqlite3-uuid */ = {
+			isa = PBXGroup;
+			children = (
+				E0369DD22C25BB23004F1B6B /* README.md */,
+				E0369DD32C25BB23004F1B6B /* uuid.c */,
+			);
+			path = "sqlite3-uuid";
+			sourceTree = "<group>";
+		};
+		E0369DD52C25BB23004F1B6B /* sqlite */ = {
+			isa = PBXGroup;
+			children = (
+				E0369DB52C25BB23004F1B6B /* gluegentools */,
+				E0369DBC2C25BB23004F1B6B /* libb64-core */,
+				E0369DC22C25BB23004F1B6B /* sqlite-amalgamation */,
+				E0369DCC2C25BB23004F1B6B /* sqlite3-base64 */,
+				E0369DD12C25BB23004F1B6B /* sqlite3-regexp-cached */,
+				E0369DD42C25BB23004F1B6B /* sqlite3-uuid */,
+			);
+			name = sqlite;
+			path = ../../sqlite;
 			sourceTree = "<group>";
 		};
 		E23D7B3E1ACEFE2A00C59171 = {
@@ -79,7 +213,13 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E0369DDD2C25BB23004F1B6B /* sqlite3.h in Headers */,
+				E0369DDB2C25BB23004F1B6B /* cencode.h in Headers */,
+				E0369DD92C25BB23004F1B6B /* cdecode.h in Headers */,
+				E0369DE12C25BB23004F1B6B /* sqlite3_base64.h in Headers */,
 				C7DCD6E41BE0295900F3300E /* SQLite.h in Headers */,
+				E0369DDE2C25BB23004F1B6B /* sqlite3ext.h in Headers */,
+				E0369DE52C25BB23004F1B6B /* sqlite3_regexp.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -123,6 +263,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 			);
 			mainGroup = E23D7B3E1ACEFE2A00C59171;
@@ -140,8 +281,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E0369DDF2C25BB23004F1B6B /* Makefile in Sources */,
+				E0369DE62C25BB23004F1B6B /* uuid.c in Sources */,
+				E0369DD82C25BB23004F1B6B /* cdecode.c in Sources */,
+				E0369DE22C25BB23004F1B6B /* test-base64-encode.c in Sources */,
 				C7DCD7141BE2D5DE00F3300E /* SQLiteResult.m in Sources */,
+				E0369DE42C25BB23004F1B6B /* sqlite3_regexp.c in Sources */,
+				E0369DE32C25BB23004F1B6B /* test-blobfrombase64.c in Sources */,
 				C7DCD6E51BE0295A00F3300E /* SQLite.m in Sources */,
+				E0369DE02C25BB23004F1B6B /* sqlite3_base64.c in Sources */,
+				E0369DDA2C25BB23004F1B6B /* cencode.c in Sources */,
+				E0369DDC2C25BB23004F1B6B /* sqlite3.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

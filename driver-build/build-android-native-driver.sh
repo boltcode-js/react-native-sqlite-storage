@@ -15,3 +15,4 @@ make
 cp sqlite-connector.jar ../../platforms/android-native/libs/sqlite-connector.jar
 cd -
 
+echo "Success -> You can now publish !"

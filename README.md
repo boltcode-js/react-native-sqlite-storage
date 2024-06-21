@@ -20,9 +20,45 @@ yarn add react-native-sqlite-storage@npm:@boltcode/react-native-sqlite-storage
 yarn add -D @types/react-native-sqlite-storage
 ```
 
+In that way you can use it as it was the official repository, using `import 'react-native-sqlite-storage'`, also it doesn't break library
+dependencies (for example typeorm require react-native-sqlite-storage, to be installed, it work well with this package).
+
+## Android
+
+On android you can use choose to use internal devices SQLite (not recommended, there is no extension and you are at the mercy of the SQLite version of the system).
+Or you can use the SQLite bundled with this library (ONLY THIS SOLUTION IS TESTED ON THIS REPO).
+
+You need to edit `react-native.config.js` and add:
+module.exports = {
+  ...,
+  dependencies: {
+    ...,
+    "react-native-sqlite-storage": {
+      platforms: {
+        android: {
+          sourceDir:
+            "../node_modules/react-native-sqlite-storage/platforms/android-native",
+          packageImportPath: "import io.liteglue.SQLitePluginPackage;",
+          packageInstance: "new SQLitePluginPackage()"
+        }
+      }
+    }
+    ...
+  }
+  ...
+};
+
+## iOS
+
+No extra steps
+
 That's it, following steps are to explain how I manage to make everything works together.
 
 # How to reproduce
+
+Requirements:
+ - JDK (minimum 1.7)
+ - Android NDK (Set ANDROID_NDK_HOME and add NDK to the path)
 
 ## Android 11 fix
 
@@ -45,14 +81,14 @@ sqlite uuid extension to the file `android-sqlite-native-driver/native/sqlc.c:sq
 
 ## Update SQLite version
 
-Also I've updated the sqlite version to the most up-to-date (in fact is not the last version but it's the last available on the sqlite-amalgamation repositiory).
+I've also updated the sqlite version to the most up-to-date (in fact is not the last version but it's the last available on the sqlite-amalgamation repositiory).  
 Version: 3.43.1 (2023-08-24)
 
 ```bash
 cd driver-build/android-sqlite-native-driver
 rm -rf sqlite-amalgamation
 git clone https://github.com/liteglue/sqlite-amalgamation.git
-cd ..
+cd .. && rm -rf sqlite-amalgamation/.git
 ./build-android-native-driver.sh
 ```
 
@@ -71,3 +107,12 @@ When running build-android-native-driver.sh, you may have the following error on
 ERROR: Unknown host CPU architecture: arm64
 ```
 You can follow this thread to solve it: https://stackoverflow.com/a/69555276/10440469
+
+## Deploy an update (Repo owner only)
+
+```
+cd driver-build
+./build-android-native-driver.sh
+cd ..
+yarn publish
+```

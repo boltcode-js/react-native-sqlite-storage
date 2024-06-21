@@ -33,13 +33,13 @@
  */
 
 #include <regex.h>
-#include "sqlite/sqlite-amalgamation/sqlite3.h"
-#include "sqlite/sqlite-amalgamation/sqlite3.c"
-#include "sqlite/libb64-core/cencode.c"
-#include "sqlite/libb64-core/cdecode.c"
-#include "sqlite/sqlite3-base64/sqlite3_base64.c"
-#include "sqlite/sqlite3-regexp-cached/sqlite3_regexp.c"
-#include "sqlite/sqlie3-uuid/uuid.c"
+#include "../../sqlite/sqlite-amalgamation/sqlite3.h"
+#include "../../sqlite/sqlite-amalgamation/sqlite3.c"
+#include "../../sqlite/libb64-core/cencode.c"
+#include "../../sqlite/libb64-core/cdecode.c"
+#include "../../sqlite/sqlite3-base64/sqlite3_base64.c"
+#include "../../sqlite/sqlite3-regexp-cached/sqlite3_regexp.c"
+#include "../../sqlite/sqlie3-uuid/uuid.c"
 
 
 @implementation SQLite

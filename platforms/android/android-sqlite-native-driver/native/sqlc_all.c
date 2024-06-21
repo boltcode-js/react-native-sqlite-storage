@@ -7,6 +7,8 @@
 
 #include "sqlite3_base64.c"
 
+#include "uuid.c"
+
 #include "sqlc.h" /* types needed for SQLiteNative_JNI.c */
 
 #include "SQLiteNative_JNI.c"

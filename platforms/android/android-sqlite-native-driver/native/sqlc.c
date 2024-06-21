@@ -10,7 +10,6 @@
 
 #include "sqlite3_base64.h"
 
-#include "uuid.c"
 
 #ifdef SQLC_KEEP_ANDROID_LOG
 // ref: http://www.ibm.com/developerworks/opensource/tutorials/os-androidndk/index.html

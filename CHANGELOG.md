@@ -7,7 +7,6 @@ v7.0.0
  4. Use bundle SQLite also for iOS
  5. Add UUID extension
  6. Update SQLite to 3.43.1
- 7. Enable promise by default
 
 v6.0.1
  1. Add missing error function to plugin.

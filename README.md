@@ -4,7 +4,7 @@ This is a fork of https://github.com/andpor/react-native-sqlite-storage in order
  - Have a well maintained repository to fix bug (Android 11 fix: https://github.com/andpor/react-native-sqlite-storage/issues/462)
  - Have same SQLite version on iOS & Android, independent of OS version, and up to date (version: 3.43.1 - 2023-09-11)
  - Add extra extensions (UUID)
- - Be able to easily rebuild this repository and android driver to fix bug quickly in the future
+ - Make easy to build & update SQLite version and driver
 
 SQLite3 Native Plugin for React Native for both Android & iOS.
 
